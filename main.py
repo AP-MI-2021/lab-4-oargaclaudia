@@ -43,7 +43,7 @@ def testcelMaiMicNr():
     assert celMaiMicNr([1, 6, 34, 68, 40, 48, 20],8)==48
     assert celMaiMicNr([1,12,22],3)==None
     assert celMaiMicNr([1,11,21,2,222],2)==2
-def is_prime(n):
+def isPrime(n):
     '''
     Determina daca un numar natural este prim
     :param n: un numar natural
@@ -57,11 +57,11 @@ def is_prime(n):
       if n%i==0:
         return False
     return True
-def test_is_prime():
-    assert is_prime(2)==True
-    assert is_prime(3)==True
-    assert is_prime(4)==False
-def is_superprime(n):
+def testIsPrime():
+    assert isPrime(2)==True
+    assert isPrime(3)==True
+    assert isPrime(4)==False
+def isSuperprime(n):
     '''
     Determina daca un numar este superprim
     :param n: un numar natural citit de la tastatura
@@ -70,16 +70,16 @@ def is_superprime(n):
     if n<2:
         return False
     while n!=0:
-        if is_prime(n)==False:
+        if isPrime(n)==False:
             return False
         else:
             n=n//10
     return True
-def test_is_superprime():
-    assert is_superprime(15)==False
-    assert is_superprime(101)==False
-    assert is_superprime(233)==True
-    assert is_superprime(237)==False
+def testIsSuperprime():
+    assert isSuperprime(15)==False
+    assert isSuperprime(101)==False
+    assert isSuperprime(233)==True
+    assert isSuperprime(237)==False
 def listaSuperPrime(l):
     '''
     Afișarea tuturor numerelor din listă care sunt superprime.
@@ -88,7 +88,7 @@ def listaSuperPrime(l):
     '''
     rezultat=[]
     for x in l:
-        if x>0 and is_superprime(x):
+        if x>0 and isSuperprime(x):
             rezultat.append(x)
     return rezultat
 def testlistaSuperPrime():
@@ -132,12 +132,20 @@ def testcelMaiMareDivizorPtNNumereNaturale():
     assert celMaiMareDivizorPtNNumereNaturale([12,22,23])==1
     assert celMaiMareDivizorPtNNumereNaturale([12,22])==2
 def oglindit(n):
+    '''
+    Returneaza oglinditul unui numar
+    :param n: un numar natural
+    :return: oglinditul numarului dat
+    '''
     og=0
     while n!=0:
         og=og*10+n%10
         n=n//10
     return og
-
+def testoglindit():
+    assert oglindit(12)==21
+    assert oglindit(14)==41
+    assert oglindit(5)==5
 def ListaNoua(l):
     rezultat=[]
     div=celMaiMareDivizorPtNNumereNaturale(l)
@@ -161,10 +169,11 @@ def main():
     testcmmdc()
     testcelMaiMicNr()
     testnumereNegative()
-    test_is_prime()
-    test_is_superprime()
+    testIsPrime()
+    testIsSuperprime()
     testlistaSuperPrime()
     testListaNoua()
+    testoglindit()
     while True:
         print("1. Citire lista")
         print("2. Afișarea tuturor numerelor negative nenule din listă")
