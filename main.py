@@ -29,7 +29,14 @@ def celMaiMicNr(l,c):
     '''
     ok=0
     for x in l:
-        if x%10==c:
+        if x<0:
+            if abs(x)%10==c:
+                if ok==0:
+                    min=x
+                    ok=1
+                elif x<min:
+                    min=x
+        elif x%10==c:
             if ok==0:
                 min=x
                 ok=1
