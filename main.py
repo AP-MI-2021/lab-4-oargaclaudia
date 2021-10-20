@@ -50,6 +50,7 @@ def testcelMaiMicNr():
     assert celMaiMicNr([1, 6, 34, 68, 40, 48, 20],8)==48
     assert celMaiMicNr([1,12,22],3)==None
     assert celMaiMicNr([1,11,21,2,222],2)==2
+    assert celMaiMicNr([-2,-12,22,122],2)==-12
 def isPrime(n):
     '''
     Determina daca un numar natural este prim
@@ -159,7 +160,7 @@ def ListaNoua(l):
     Afișarea listei obținute din lista inițială în care numerele pozitive și nenule au fost înlocuite cu
 CMMDC-ul lor și numerele negative au cifrele în ordine inversă.
     :param l:lista de intregi
-    :return: lista obtinuta din lista inițială în care numerele pozitive și nenule au fost înlocuite cu
+    :return: lista obtinuta din lista inițială l în care numerele pozitive și nenule au fost înlocuite cu
 CMMDC-ul lor și numerele negative au cifrele în ordine inversă.
     '''
     rezultat=[]
@@ -193,9 +194,9 @@ def main():
     while True:
         print("1. Citire lista")
         print("2. Afișarea tuturor numerelor negative nenule din listă")
-        print("3.Afișarea celui mai mic număr care are ultima cifră egală cu o cifră citită de la tastatură.")
+        print("3. Afișarea celui mai mic număr care are ultima cifră egală cu o cifră citită de la tastatură.")
         print("4. Afișarea tuturor numerelor din listă care sunt superprime.")
-        print("5.Afișarea listei obținute din lista inițială în care numerele pozitive și nenule au fost înlocuite cu CMMDC-ul lor și numerele negative au cifrele în ordine inversă. ")
+        print("5. Afișarea listei obținute din lista inițială în care numerele pozitive și nenule au fost înlocuite cu CMMDC-ul lor și numerele negative au cifrele în ordine inversă. ")
         print("x. Iesire")
         optiune=input("Dati optiunea: ")
         if optiune=="1":
