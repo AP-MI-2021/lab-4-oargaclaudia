@@ -95,18 +95,82 @@ def testlistaSuperPrime():
     assert listaSuperPrime([123,233])==[233]
     assert listaSuperPrime([])==[]
     assert listaSuperPrime([123,173,239])==[239]
+def cmmdc(a,b):
+    '''
+    Returneaza cel mai mare divizor comun a doua numere
+    :param a: un numar natural
+    :param b: un numar natural
+    :return: cel mai mare divizor comun al numerelor
+    '''
+    while a!=b:
+        if a>b:
+            a=a-b
+        else:
+            b=b-a
+    return a
+def testcmmdc():
+    assert cmmdc(2,10)==2
+    assert cmmdc(2,3)==1
+    assert cmmdc(12,22)==2
+def celMaiMareDivizorPtNNumereNaturale(l):
+    '''
+    Returneaza cel mai mare divizor comun a n numere naturale pozitive
+    :param l: o lista de numere
+    :return: None, daca lista nu are numere pozitive. Altfel, returneeaza cmmdc
+    '''
+    rezultat=[]
+    for x in l:
+        if x>0:
+            rezultat.append(x)
+    if len(rezultat)==0:
+        return None
+    div=rezultat[0]
+    for i in range(1,len(rezultat)):
+        div=cmmdc(div,rezultat[i])
+    return div
+def testcelMaiMareDivizorPtNNumereNaturale():
+    assert celMaiMareDivizorPtNNumereNaturale([12,22,23])==1
+    assert celMaiMareDivizorPtNNumereNaturale([12,22])==2
+def oglindit(n):
+    og=0
+    while n!=0:
+        og=og*10+n%10
+        n=n//10
+    return og
+
+def ListaNoua(l):
+    rezultat=[]
+    div=celMaiMareDivizorPtNNumereNaturale(l)
+    for x in l:
+        if x>0:
+            rezultat.append(div)
+        elif x<0:
+            xstr=""
+            y=oglindit(abs(x))
+            xstr=xstr+"-"+str(y)
+            rezultat.append(int(xstr))
+        else:
+            rezultat.append(x)
+    return rezultat
+def testListaNoua():
+    assert ListaNoua([-76, 12, 24, -13, 144])==[-67, 12, 12, -31, 12]
+
 def main():
     l=[]
+    testcelMaiMareDivizorPtNNumereNaturale()
+    testcmmdc()
     testcelMaiMicNr()
     testnumereNegative()
     test_is_prime()
     test_is_superprime()
     testlistaSuperPrime()
+    testListaNoua()
     while True:
         print("1. Citire lista")
         print("2. Afișarea tuturor numerelor negative nenule din listă")
         print("3.Afișarea celui mai mic număr care are ultima cifră egală cu o cifră citită de la tastatură.")
         print("4. Afișarea tuturor numerelor din listă care sunt superprime.")
+        print("5.Afișarea listei obținute din lista inițială în care numerele pozitive și nenule au fost înlocuite cu CMMDC-ul lor și numerele negative au cifrele în ordine inversă. ")
         print("x. Iesire")
         optiune=input("Dati optiunea: ")
         if optiune=="1":
@@ -121,6 +185,8 @@ def main():
                 print(celMaiMicNr(l,c))
         elif optiune=="4":
             print(listaSuperPrime(l))
+        elif optiune=="5":
+            print(ListaNoua(l))
         elif optiune=="x":
             break
         else:
