@@ -138,11 +138,12 @@ def celMaiMareDivizorPtNNumereNaturale(l):
 def testcelMaiMareDivizorPtNNumereNaturale():
     assert celMaiMareDivizorPtNNumereNaturale([12,22,23])==1
     assert celMaiMareDivizorPtNNumereNaturale([12,22])==2
+    assert celMaiMareDivizorPtNNumereNaturale([23,34,45,66,5])==1
 def oglindit(n):
     '''
     Returneaza oglinditul unui numar
     :param n: un numar natural
-    :return: oglinditul numarului dat
+    :return: oglinditul numarului n dat
     '''
     og=0
     while n!=0:
@@ -151,9 +152,16 @@ def oglindit(n):
     return og
 def testoglindit():
     assert oglindit(12)==21
-    assert oglindit(14)==41
+    assert oglindit(142)==241
     assert oglindit(5)==5
 def ListaNoua(l):
+    '''
+    Afișarea listei obținute din lista inițială în care numerele pozitive și nenule au fost înlocuite cu
+CMMDC-ul lor și numerele negative au cifrele în ordine inversă.
+    :param l:lista de intregi
+    :return: lista obtinuta din lista inițială în care numerele pozitive și nenule au fost înlocuite cu
+CMMDC-ul lor și numerele negative au cifrele în ordine inversă.
+    '''
     rezultat=[]
     div=celMaiMareDivizorPtNNumereNaturale(l)
     for x in l:
@@ -169,7 +177,8 @@ def ListaNoua(l):
     return rezultat
 def testListaNoua():
     assert ListaNoua([-76, 12, 24, -13, 144])==[-67, 12, 12, -31, 12]
-
+    assert ListaNoua([-2, 2 ,22])==[-2,2,2]
+    assert ListaNoua([])==[]
 def main():
     l=[]
     testcelMaiMareDivizorPtNNumereNaturale()
